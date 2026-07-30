@@ -853,8 +853,14 @@
                   return;
                 }
 
+                const headers = {};
+                if (app.supabaseAnonKey) {
+                  headers["apikey"] = app.supabaseAnonKey;
+                  headers["Authorization"] = `Bearer ${app.supabaseAnonKey}`;
+                }
+
                 const downloadUrl = `${fnBase}/casimport?type=download_mol&substance_id=${substanceId}`;
-                const res = await fetch(downloadUrl);
+                const res = await fetch(downloadUrl, { headers });
                 if (!res.ok) {
                   const errData = await res.json().catch(() => ({}));
                   alert(errData.error || "Mol 파일 다운로드에 실패했습니다.");

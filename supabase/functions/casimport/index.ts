@@ -1,6 +1,6 @@
 
 /// <reference lib="deno.ns" />
-import { parse } from "x/xml";
+import { parse } from "https://deno.land/x/xml@2.1.3/mod.ts";
 import {
   supabase,
   corsHeaders,
